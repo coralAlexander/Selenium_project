@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,6 +23,9 @@ public abstract class BasePages {
     Actions builder;
     JavascriptExecutor executor;
 
+    @FindBy(css="a[title='Log in to your customer account']")
+    private WebElement signIn;
+
     public BasePages() {
         this.driver = getDriver();
         PageFactory.initElements(driver, this);
@@ -37,20 +41,16 @@ public abstract class BasePages {
         clipboard.setContents(stringSelection, null);
         element.sendKeys(Keys.CONTROL, "v");
     }
-
-
-
     void clickWithJavascript(WebElement element){
         executor.executeScript("arguments[0].click()",element);
     }
 
-      /*boolean isElementFound(By by, int timeout) throws InterruptedException {
-        List<WebElement> elements = driver.findElements(by);
-        for (int i = 0; (i < timeout) && (elements.size() == 0); i++) {
-            Thread.sleep(1000);
-            elements = driver.findElements(by);
-        }
-        return elements.size() > 0;
-    }*/
+    public void scrollDown(int fromValue , int toValue){
+        executor.executeScript("window.scrollBy("+fromValue+","+toValue+")");
+    }
 
+    public SignInPage signIn(){
+        signIn.click();
+        return new SignInPage();
+    }
 }

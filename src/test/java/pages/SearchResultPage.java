@@ -37,7 +37,7 @@ public class SearchResultPage extends BasePages {
                 .as("Wrong attribute text!").contains(expected);
     }
 
-    public void gotToHomePage(){
+    public void clickGoHomeButton(){
         returnHome.click();
     }
 }

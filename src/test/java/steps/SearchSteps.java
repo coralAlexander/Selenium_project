@@ -1,17 +1,22 @@
 package steps;
 
-import pages.SearchPage;
+import pages.HomePage;
 
 public class SearchSteps {
 
-    SearchPage searchPage = new SearchPage();
+    HomePage homePage = new HomePage();
 
-    public  SearchResultsSteps executeSearchByKeyword(String keyword) throws InterruptedException {
-        searchPage.pasteToSearchField(keyword);
+    public SearchResultsSteps executeSearchByKeyword(String keyword) {
+        homePage.pasteToSearchField(keyword);
         //searchPage.fillSearchField(keyword);
         //searchPage.clickSearchButtonOrPressEnter();
-        searchPage.pressEnter();
+        homePage.pressEnter();
         return new SearchResultsSteps();
+    }
+
+    public SearchSteps verifyIfCurrentPageIsHomePage(String text) {
+        homePage.VerifyThatNoHomePage(text);
+        return this;
     }
 
 

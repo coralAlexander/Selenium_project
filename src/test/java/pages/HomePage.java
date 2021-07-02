@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class SearchPage extends BasePages {
+public class HomePage extends BasePages {
 
     @FindBy(name = "search_query")
     private WebElement searchField;
@@ -14,7 +14,10 @@ public class SearchPage extends BasePages {
     @FindBy(css = "a[title='My Store']")
     private WebElement myStore;
 
-    public SearchPage() {
+    @FindBy(css = "a[title='My credit slips']")
+    private WebElement myCreditSlips;
+
+    public HomePage() {
         super();
     }
 
@@ -34,25 +37,11 @@ public class SearchPage extends BasePages {
     public void VerifyThatNoHomePage(String expected){
             assertThat(myStore.getAttribute("origin"))
                     .as("Wrong attribute text!").contains(expected);
-
     }
 
-   /* public void moveToVoiceSearchButton(){
-        builder.moveToElement(searchByVoiceButton).build().perform();
+    public MyCreditSlipsPage chooseMyOrders(){
+        scrollDown(0,1000);
+        myCreditSlips.click();
+        return new MyCreditSlipsPage();
     }
-*/
-    /*public void assertThatVoiceSearchTooltipContainsText(String text){
-       assertThat(pageBody.findElements(By.xpath("//*[contains(text(),'"+text+"')]")).size())
-               .as("Expected tooltip ["+text+"] was not found").isNotZero();
-    }*/
-
-    /*public void clickSearchButtonOrPressEnter() throws InterruptedException {
-        if(isElementFound(By.name("btnI"),3)){
-            wait.until(ExpectedConditions.elementToBeClickable(searchButton));
-            searchButton.click();
-        }
-        else {
-            pressEnter();
-        }
-    }*/
 }

@@ -5,6 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import steps.MyCreditSlipsSteps;
 import steps.SearchSteps;
 import utils.DriverFactory;
 
@@ -16,6 +17,8 @@ public abstract class BaseTest {
     private static WebDriver driver;
 
     SearchSteps steps;
+    MyCreditSlipsSteps myCreditSlipsSteps;
+
 
     public static WebDriver getDriver() {
         return driver;
@@ -27,6 +30,7 @@ public abstract class BaseTest {
         driver.get(getBaseUrl());
         //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         steps = new SearchSteps();
+        myCreditSlipsSteps = new MyCreditSlipsSteps();
     }
 
     @AfterClass
