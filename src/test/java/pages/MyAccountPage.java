@@ -2,14 +2,21 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class MyAccountPage {
+public class MyAccountPage extends BasePages {
 
-    @FindBy(css="span[class='navigation_page']")
+    @FindBy(css="div[class='header_user_info']")
     private WebElement myAccountPage;
 
+    public MyAccountPage() {
+        super();
+    }
+
     public void verifyThatCurrentPageIsMyAccountPage(){
-        assertThat(myAccountPage.getAttribute("outerText")).as("Login Failed , wrong page !").isEqualTo("My account");
+        wait.until(ExpectedConditions.visibilityOfAllElements(myAccountPage));
+        assertThat(myAccountPage.getAttribute("innerText")).as("Login Failed , wrong page !").isEqualTo("Alexander Alex");
     }
 }

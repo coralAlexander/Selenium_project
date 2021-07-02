@@ -135,6 +135,11 @@
             <version>3.0.0-M5</version>
             <type>maven-plugin</type>
         </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.3.0</version>
+        </dependency>
 
     </dependencies>
 </project>

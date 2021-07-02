@@ -1,8 +1,9 @@
 package steps;
 
 import pages.HomePage;
+import pages.SignInPage;
 
-public class SearchSteps {
+public class HomePageSteps {
 
     HomePage homePage = new HomePage();
 
@@ -14,9 +15,14 @@ public class SearchSteps {
         return new SearchResultsSteps();
     }
 
-    public SearchSteps verifyIfCurrentPageIsHomePage(String text) {
+    public HomePageSteps verifyIfCurrentPageIsHomePage(String text) {
         homePage.VerifyThatNoHomePage(text);
         return this;
+    }
+
+    public SignInPage goToSignIn(){
+        homePage.signIn();
+        return new SignInPage();
     }
 
 

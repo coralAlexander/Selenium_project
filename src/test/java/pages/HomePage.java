@@ -17,6 +17,9 @@ public class HomePage extends BasePages {
     @FindBy(css = "a[title='My credit slips']")
     private WebElement myCreditSlips;
 
+    @FindBy(css="a[title='Log in to your customer account']")
+    private WebElement signIn;
+
     public HomePage() {
         super();
     }
@@ -39,9 +42,15 @@ public class HomePage extends BasePages {
                     .as("Wrong attribute text!").contains(expected);
     }
 
-    public MyCreditSlipsPage chooseMyOrders(){
+   /* public MyCreditSlipsPage chooseMyOrders(){
         scrollDown(0,1000);
         myCreditSlips.click();
         return new MyCreditSlipsPage();
+    }*/
+
+    public SignInPage signIn(){
+
+        signIn.click();
+        return new SignInPage();
     }
 }

@@ -23,9 +23,6 @@ public abstract class BasePages {
     Actions builder;
     JavascriptExecutor executor;
 
-    @FindBy(css="a[title='Log in to your customer account']")
-    private WebElement signIn;
-
     public BasePages() {
         this.driver = getDriver();
         PageFactory.initElements(driver, this);
@@ -47,10 +44,5 @@ public abstract class BasePages {
 
     public void scrollDown(int fromValue , int toValue){
         executor.executeScript("window.scrollBy("+fromValue+","+toValue+")");
-    }
-
-    public SignInPage signIn(){
-        signIn.click();
-        return new SignInPage();
     }
 }

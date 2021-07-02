@@ -5,8 +5,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-import steps.MyCreditSlipsSteps;
-import steps.SearchSteps;
+import steps.HomePageSteps;
+import steps.SignInPageSteps;
 import utils.DriverFactory;
 
 import static utils.PropertyReader.getBaseUrl;
@@ -16,8 +16,8 @@ public abstract class BaseTest {
 
     private static WebDriver driver;
 
-    SearchSteps steps;
-    MyCreditSlipsSteps myCreditSlipsSteps;
+    HomePageSteps homePageSteps;
+    SignInPageSteps signInPageSteps;
 
 
     public static WebDriver getDriver() {
@@ -29,8 +29,8 @@ public abstract class BaseTest {
         driver = DriverFactory.getDriver(getBrowser());
         driver.get(getBaseUrl());
         //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        steps = new SearchSteps();
-        myCreditSlipsSteps = new MyCreditSlipsSteps();
+        homePageSteps = new HomePageSteps();
+        signInPageSteps = new SignInPageSteps();
     }
 
     @AfterClass
@@ -40,7 +40,8 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void goBack() {
-        driver.navigate().back();
+
+        //driver.navigate().back();
     }
 
     @DataProvider(name = "dataProvider")
