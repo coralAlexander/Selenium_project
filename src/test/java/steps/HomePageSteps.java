@@ -1,5 +1,6 @@
 package steps;
 
+import pages.ContactUsPage;
 import pages.HomePage;
 import pages.SignInPage;
 
@@ -23,6 +24,11 @@ public class HomePageSteps {
     public SignInPage goToSignIn(){
         homePage.signIn();
         return new SignInPage();
+    }
+
+    public ContactUsPage goToContactPage(){
+        homePage.chooseContactPage();
+        return new ContactUsPage();
     }
 
 

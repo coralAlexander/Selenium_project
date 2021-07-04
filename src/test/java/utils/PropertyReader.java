@@ -13,6 +13,10 @@ public class PropertyReader {
         return getProperty("url");
     }
 
+    public static String getPathToUploadFile(){
+        return getProperty("pathToUploadFile");
+    }
+
     public static Browser getBrowser() {
         return Browser.valueOf(getProperty("browser"));
     }

@@ -20,6 +20,9 @@ public class HomePage extends BasePages {
     @FindBy(css="a[title='Log in to your customer account']")
     private WebElement signIn;
 
+    @FindBy(css="div[id='contact-link']")
+    private WebElement chooseContactUs;
+
     public HomePage() {
         super();
     }
@@ -48,9 +51,11 @@ public class HomePage extends BasePages {
         return new MyCreditSlipsPage();
     }*/
 
-    public SignInPage signIn(){
-
+    public void signIn(){
         signIn.click();
-        return new SignInPage();
+    }
+
+    public void chooseContactPage(){
+        chooseContactUs.click();
     }
 }

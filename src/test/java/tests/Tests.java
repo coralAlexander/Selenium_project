@@ -21,4 +21,10 @@ public class Tests extends BaseTest {
         homePageSteps.goToSignIn();
         signInPageSteps.loginWithUserAndPassword("sector2727@gmail.com","123456").verifyThatCurrentPageIsMyAccountPage();
     }
+
+    @Test
+    public void sendEmailMessageSuccessFlow(){
+        homePageSteps.goToContactPage();
+        contactUsPageSteps.sendMessage("Webmaster","-- Choose --","My first email");
+    }
 }

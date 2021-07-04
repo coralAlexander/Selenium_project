@@ -5,6 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import steps.ContactUsPageSteps;
 import steps.HomePageSteps;
 import steps.SignInPageSteps;
 import utils.DriverFactory;
@@ -18,6 +19,7 @@ public abstract class BaseTest {
 
     HomePageSteps homePageSteps;
     SignInPageSteps signInPageSteps;
+    ContactUsPageSteps contactUsPageSteps;
 
 
     public static WebDriver getDriver() {
@@ -31,6 +33,7 @@ public abstract class BaseTest {
         //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         homePageSteps = new HomePageSteps();
         signInPageSteps = new SignInPageSteps();
+        contactUsPageSteps = new ContactUsPageSteps();
     }
 
     @AfterClass
