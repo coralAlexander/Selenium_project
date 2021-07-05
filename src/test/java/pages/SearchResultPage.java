@@ -20,14 +20,12 @@ public class SearchResultPage extends BasePages {
     @FindBy(css = "a[title='Return to Home']")
     private WebElement returnHome;
 
-
     public SearchResultPage() {
         super();
     }
 
     public void assertThatResultContainsCorrectText(String expected) {
         wait.until(ExpectedConditions.visibilityOfAllElements(resultRows));
-        //assertThat(resultRow.isDisplayed()).as("Element has not been displayed!").isTrue();
         assertThat(resultRows.stream().map(e -> e.getText()).collect(Collectors.toList()).toString())
                 .as("Wrong attribute has been displayed!").contains(expected);
     }
@@ -37,7 +35,7 @@ public class SearchResultPage extends BasePages {
                 .as("Wrong attribute text!").contains(expected);
     }
 
-    public void clickGoHomeButton(){
-        returnHome.click();
+    public void pressHomeButton(){
+       commonActions.click(returnHome);
     }
 }

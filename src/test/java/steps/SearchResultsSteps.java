@@ -17,7 +17,7 @@ public class SearchResultsSteps {
     }
 
     public HomePageSteps goHome(){
-        searchResultPage.clickGoHomeButton();
+        searchResultPage.pressHomeButton();
         return new HomePageSteps();
     }
 

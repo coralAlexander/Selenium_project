@@ -22,10 +22,10 @@ public class SignInPage extends BasePages {
 
     public void fillPassword(String pswd){
         wait.until(ExpectedConditions.visibilityOfAllElements(passwordField));
-        passwordField.sendKeys(pswd);
+        commonActions.addText(passwordField,pswd);
     }
 
     public void pressSignInButton(){
-        submitButton.click();
+        commonActions.click(submitButton);
     }
 }

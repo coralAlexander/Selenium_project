@@ -10,8 +10,6 @@ public class HomePageSteps {
 
     public SearchResultsSteps executeSearchByKeyword(String keyword) {
         homePage.pasteToSearchField(keyword);
-        //searchPage.fillSearchField(keyword);
-        //searchPage.clickSearchButtonOrPressEnter();
         homePage.pressEnter();
         return new SearchResultsSteps();
     }
@@ -21,25 +19,13 @@ public class HomePageSteps {
         return this;
     }
 
-    public SignInPage goToSignIn(){
+    public SignInPage goToSignIn() {
         homePage.signIn();
         return new SignInPage();
     }
 
-    public ContactUsPage goToContactPage(){
+    public ContactUsPage goToContactPage() {
         homePage.chooseContactPage();
         return new ContactUsPage();
     }
-
-
-
- /*   public SearchSteps openTooltip(){
-        searchPage.moveToVoiceSearchButton();
-        return this;
-    }
-
-    public SearchSteps verifyThatTooltipContainsProperText(String text){
-     searchPage.assertThatVoiceSearchTooltipContainsText(text);
-     return this;
-    }*/
 }

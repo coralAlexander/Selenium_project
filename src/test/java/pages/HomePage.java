@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -32,12 +31,13 @@ public class HomePage extends BasePages {
         searchField.sendKeys(text);
     }
 
+
     public void pressEnter(){
-        searchField.sendKeys(Keys.RETURN);
+        commonActions.pressEnter(searchField);
     }
 
     public void pasteToSearchField(String text){
-      pasteTextToElementFromClipBoard(searchField,text);
+      commonActions.pasteTextToElementFromClipBoard(searchField,text);
     }
 
     public void VerifyThatNoHomePage(String expected){
@@ -45,14 +45,8 @@ public class HomePage extends BasePages {
                     .as("Wrong attribute text!").contains(expected);
     }
 
-   /* public MyCreditSlipsPage chooseMyOrders(){
-        scrollDown(0,1000);
-        myCreditSlips.click();
-        return new MyCreditSlipsPage();
-    }*/
-
     public void signIn(){
-        signIn.click();
+       commonActions.click(signIn);
     }
 
     public void chooseContactPage(){

@@ -1,13 +1,14 @@
 package pages;
 
+import actions.CommonActions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import verification.Verification;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -20,6 +21,8 @@ public abstract class BasePages {
 
     WebDriver driver;
     WebDriverWait wait;
+    CommonActions commonActions;
+    Verification verification;
     Actions builder;
     JavascriptExecutor executor;
 
@@ -27,22 +30,10 @@ public abstract class BasePages {
         this.driver = getDriver();
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, 5);
+        verification = new Verification(wait);
         builder = new Actions(driver);
         executor = (JavascriptExecutor) driver;
-    }
+        commonActions = new CommonActions(builder,executor);
 
-    void pasteTextToElementFromClipBoard(WebElement element, String text) {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Clipboard clipboard = toolkit.getSystemClipboard();
-        StringSelection stringSelection = new StringSelection(text);
-        clipboard.setContents(stringSelection, null);
-        element.sendKeys(Keys.CONTROL, "v");
-    }
-    void clickWithJavascript(WebElement element){
-        executor.executeScript("arguments[0].click()",element);
-    }
-
-    public void scrollDown(int fromValue , int toValue){
-        executor.executeScript("window.scrollBy("+fromValue+","+toValue+")");
     }
 }
