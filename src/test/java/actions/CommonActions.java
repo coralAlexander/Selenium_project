@@ -54,10 +54,6 @@ public class CommonActions {
         addText(element,text);
     }
 
-    public void clear(WebElement element){
-        element.clear();
-    }
-
     public void pressEnter(WebElement searchField) {
         waitForElement(searchField);
         searchField.sendKeys(Keys.ENTER);

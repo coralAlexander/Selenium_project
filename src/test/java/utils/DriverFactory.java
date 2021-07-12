@@ -20,7 +20,6 @@ public class DriverFactory {
                 driver = new InternetExplorerDriver();
                 break;
         }
-       // driver.manage().window().maximize();
         return driver;
     }
 }

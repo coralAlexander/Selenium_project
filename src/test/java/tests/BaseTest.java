@@ -1,16 +1,11 @@
 package tests;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import pages.DriversPage;
-import pages.MerchantPage;
 import steps.*;
 import utils.DriverFactory;
-import verification.Verification;
 
 import static utils.PropertyReader.getBaseUrl;
 import static utils.PropertyReader.getBrowser;
@@ -36,7 +31,6 @@ public abstract class BaseTest {
     public void setUp() {
         driver = DriverFactory.getDriver(getBrowser());
         driver.get(getBaseUrl());
-        //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         loginSteps = new LoginSteps();
         mapPageSteps = new MapPageSteps();
         merchantPageSteps = new MerchantPageSteps();
@@ -50,7 +44,7 @@ public abstract class BaseTest {
     @AfterClass
     public void tearDown() {
 
-        //driver.quit();
+        driver.quit();
     }
 
     @AfterMethod
@@ -59,10 +53,10 @@ public abstract class BaseTest {
         //driver.navigate().back();
     }
 
-    @DataProvider(name = "dataProvider")
+   /* @DataProvider(name = "dataProvider")
     public Object[][] dataProviderMethod() {
         return new Object[][]{{"Blouse"}};
-    }
+    }*/
 
 
 }
