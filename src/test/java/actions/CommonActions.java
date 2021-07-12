@@ -4,7 +4,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -18,10 +21,14 @@ public class CommonActions {
 
     Actions builder;
     JavascriptExecutor executor;
+    WebDriver driver;
+    WebDriverWait wait;
 
-    public CommonActions(Actions builder, JavascriptExecutor executor) {
+    public CommonActions(Actions builder, JavascriptExecutor executor, WebDriver driver, WebDriverWait wait) {
         this.builder = builder;
         this.executor = executor;
+        this.driver = driver;
+        this.wait = wait;
     }
 
     public void scrollDown(int fromValue, int toValue) {
@@ -33,27 +40,68 @@ public class CommonActions {
         Clipboard clipboard = toolkit.getSystemClipboard();
         StringSelection stringSelection = new StringSelection(text);
         clipboard.setContents(stringSelection, null);
+        clickable(element);
         element.sendKeys(Keys.CONTROL, "v");
     }
 
-
     public void clickWithJavascript(WebElement element) {
+        waitForElement(element);
         executor.executeScript("arguments[0].click()", element);
     }
 
+    public void addTextJavaScrip(WebElement element ,String text){
+        executor.executeScript("arguments[0].setAttribute('style.ng-hide','isConnected:true;');",element);
+        addText(element,text);
+    }
+
+    public void clear(WebElement element){
+        element.clear();
+    }
+
     public void pressEnter(WebElement searchField) {
-        searchField.sendKeys(Keys.RETURN);
+        waitForElement(searchField);
+        searchField.sendKeys(Keys.ENTER);
     }
 
     public void click(WebElement element) {
+        waitForElement(element);
         element.click();
     }
 
     public void attachFile(WebElement attachFile, String file) {
+        waitForElement(attachFile);
         attachFile.sendKeys(PATH_TO_FILE + file);
     }
 
     public void addText(WebElement element, String text) {
+        waitForElement(element);
         element.sendKeys(text);
+    }
+
+    public void confirmAlert() {
+        driver.switchTo().alert().accept();
+    }
+
+    public void refreshPage() {
+        driver.navigate().refresh();
+    }
+
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public void waitForElement(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOfAllElements(element));
+    }
+
+    public void clickable(WebElement element) {
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
+    public void dragAndDrop(WebElement from , WebElement to){
+         builder.clickAndHold(from)
+                .moveToElement(to)
+                .release(from)
+                .build().perform();
     }
 }
