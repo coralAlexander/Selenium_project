@@ -59,6 +59,15 @@ public class CommonActions {
         searchField.sendKeys(Keys.ENTER);
     }
 
+    public void enter(WebElement element){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        builder.sendKeys(Keys.ENTER).perform();
+    }
+
     public void click(WebElement element) {
         waitForElement(element);
         element.click();
@@ -71,7 +80,7 @@ public class CommonActions {
 
     public void addText(WebElement element, String text) {
         waitForElement(element);
-        element.sendKeys(text);
+        builder.sendKeys(element,text).build().perform();
     }
 
     public void confirmAlert() {

@@ -25,7 +25,7 @@ public class Tests extends BaseTest {
         loginSteps.loginWithUserPassword("candidate@bringg.com", "Candidate123!", "https://app.bringg.com/#/login/");
         mapPageSteps.goToDriverPage();
         driversPageSteps.goToTeams();
-        teamsPageSteps.addTeam("Test Team", "Test description", "Tel Aviv");
+        teamsPageSteps.addTeam("Test Team", "Test description", "Tel Aviv",1);
     }
 
     @Test

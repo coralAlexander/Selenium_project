@@ -15,16 +15,14 @@ public class TeamsPage extends Base {
     private WebElement teamNameField;
     @FindBy(css = "input[id='teamDescription']")
     private WebElement descriptionField;
-    //@FindBy(css = "div[id='teamAddress']")
-    @FindBy(css="#teamAddress > div.ui-select-match.ng-scope")
-    //@FindBy(xpath="//span[@aria-label='Select box activate']")
+    @FindBy(css = "div[id='teamAddress']")
+    //@FindBy(css="#teamAddress > div.ui-select-match.ng-scope")
     private WebElement selectAddressField;
-    @FindBy(css = "input[id='teamLng']")
-    private WebElement lngField;
     @FindBy(css = "input[id='teamContactPhone']")
     private WebElement contactPhoneField;
-    @FindBy(css = "div[class='select2-search'] input[type='text']")
-    private WebElement timeZoneField;
+    @FindBy(css = "a[class='btn btn-small btn-primary ng-binding']")
+    private WebElement saveTeam;@FindBy(css="p[class='muted ng-binding']")
+    private WebElement teamsNumber;
 
     public void pressAddTeamButton() {
         commonActions.click(addTeamButton);
@@ -39,33 +37,20 @@ public class TeamsPage extends Base {
     }
 
 
-    public void fillAddressField(){
-        //driver.findElements(By.cssSelector("div[id='teamAddress']")).get(0).click();
-        //new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.nsg-button"))).click();
-        commonActions.click(selectAddressField);
-        commonActions.pressEnter(selectAddressField);
-        commonActions.addText(selectAddressField,"T");
-        commonActions.pressEnter(selectAddressField);
-        commonActions.click(selectAddressField);
-    }
-
-
-   /* public void selectAddressField(String address) {
+    public void fillAddressField(String address) {
         commonActions.addText(selectAddressField, address);
-        commonActions.pressEnter(selectAddressField);
-        commonActions.click(selectAddressField);
-    }*/
-
-  /*  public void fillLngField(String lng) {
-        commonActions.addText(lngField, lng);
+        commonActions.enter(selectAddressField);
     }
 
-    public void fillContactPhoneField(String phone) {
-        commonActions.addText(contactPhoneField, phone);
+    public void saveTeam() {
+        commonActions.click(saveTeam);
     }
 
-    public void selectTimeZone(String timeZone) {
-        commonActions.addText(timeZoneField, timeZone);
-        commonActions.pressEnter(timeZoneField);
-    }*/
+    public void refreshTeamsPage() {
+        commonActions.refreshPage();
+    }
+
+    public void verifyNumberOfTeams(int expecteNumber){
+        verification.assertNumberOfTeams(teamsNumber,expecteNumber);
+    }
 }

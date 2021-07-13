@@ -11,23 +11,16 @@
         </groups>
 
         <classes>
-            <class name="temp.common.smoke.Test1"></class>
-            <class name="temp.common.smoke.Test2"></class>
+            <class name=""></class>
+            <class name=""></class>
         </classes>
 
-
-        <!-- <packages>
-            <package name="temp.common.smoke"></package>
-        </packages>-->
-     <!--   <classes>
-            <class name="temp.common.smoke.Test1"></class>
-        </classes>-->
     </test>
 
     <test name = "Parallel Tests" parallel = "methods">
             <classes>
-                <class name="temp.common.smoke.Test1"></class>
-                <class name="temp.common.smoke.Test2"></class>
+                <class name=""></class>
+                <class name=""></class>
             </classes>
     </test>
 </suite>
