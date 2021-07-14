@@ -1,7 +1,7 @@
 package steps;
 
 import pages.DriversPage;
-import pages.ListViewPage;
+import pages.PlannigPage;
 import pages.MapPage;
 import pages.MerchantPage;
 
@@ -29,8 +29,8 @@ public class MapPageSteps {
         return this;
     }
 
-    public ListViewPage goToListViewPage(){
+    public PlannigPage goToPlanningPage(){
         mapPage.pressListViewButton();
-        return new ListViewPage();
+        return new PlannigPage();
     }
 }

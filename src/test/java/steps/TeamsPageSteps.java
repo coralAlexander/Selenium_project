@@ -13,8 +13,7 @@ public class TeamsPageSteps {
         teamsPage.fillAddressField(address);
         teamsPage.saveTeam();
         teamsPage.refreshTeamsPage();
-        teamsPage.verifyNumberOfTeams(numberOfTeams);
-
+        teamsPage.verifyThatTeamAdded(description);
         return this;
     }
 }

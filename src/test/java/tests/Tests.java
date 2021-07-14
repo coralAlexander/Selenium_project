@@ -8,13 +8,11 @@ public class Tests extends BaseTest {
 
     @Test
     public void successfullyLoginRedirectToMapPage() {
-        loginSteps.loginWithUserPassword("candidate@bringg.com", "Candidate123!", "https://app.bringg.com/#/login/");
         mapPageSteps.urlVerification("https://app.bringg.com/#/map/");
     }
 
     @Test
     public void cleanupAccountAndEnablePlanning() {
-        loginSteps.loginWithUserPassword("candidate@bringg.com", "Candidate123!", "https://app.bringg.com/#/login/");
         mapPageSteps.selectSettingFromDropDownMenu();
         merchantPageSteps.cleanAccountFromDrivers().selectMerchantConfiguration();
         merchantConfigPageSteps.selectCheckBoxPlanningPhaseBeforeExecution();
@@ -22,36 +20,32 @@ public class Tests extends BaseTest {
 
     @Test
     public void createANewTeam() {
-        loginSteps.loginWithUserPassword("candidate@bringg.com", "Candidate123!", "https://app.bringg.com/#/login/");
         mapPageSteps.goToDriverPage();
         driversPageSteps.goToTeams();
-        teamsPageSteps.addTeam("Test Team", "Test description", "Tel Aviv",1);
+        teamsPageSteps.addTeam("Test Team",generateString(), "Tel Aviv",1);
     }
 
     @Test
     public void addDrivers() {
-        loginSteps.loginWithUserPassword("candidate@bringg.com", "Candidate123!", "https://app.bringg.com/#/login/");
         mapPageSteps.goToDriverPage();
-        driversPageSteps.addDriver(generateDriverName(), "Test title", "0546789099", generateDriverName()+"@driver.com", "123456",1);
-        driversPageSteps.addDriver(generateDriverName(), "Test title", "0546789099", generateDriverName()+"@driver.com", "123456",2);
+        driversPageSteps.addDriver(generateString(), "Test title", "0546789099", generateString()+"@driver.com", "123456",1);
+        driversPageSteps.addDriver(generateString(), "Test title", "0546789099", generateString()+"@driver.com", "123456",2);
     }
 
     @Test
     public void createOrder(){
-        loginSteps.loginWithUserPassword("candidate@bringg.com", "Candidate123!", "https://app.bringg.com/#/login/");
-        mapPageSteps.goToListViewPage();
-        listViewPageSteps.addOrder("Test Team","Tel Aviv","Test Title",1);
+        mapPageSteps.goToPlanningPage();
+        planningPageSteps.addOrder("Test Team","Tel Aviv","Test Title",1,"test@test.com","test");
 
     }
 
-    @Test
+  /*  @Test
     public void dragAndDrop(){
-        loginSteps.loginWithUserPassword("candidate@bringg.com", "Candidate123!", "https://app.bringg.com/#/login/");
-        mapPageSteps.goToListViewPage();
-        listViewPageSteps.dragAndDropElement();
-    }
+        mapPageSteps.goToPlanningPage();
+        planningPageSteps.dragAndDropElement();
+    }*/
 
-    private String generateDriverName(){
+    private String generateString(){
        return RandomStringUtils.random(5, true, false);
     }
 

@@ -7,7 +7,7 @@ public class LoginSteps {
 
     private LoginPage loginPage = new LoginPage();
 
-    public MapPage loginWithUserPassword(String userName, String password,String url){
+    public MapPage loginWithUserPasswordAndVerifyUrl(String userName, String password, String url){
         loginPage.verifyUrl(url);
         loginPage.fillUserName(userName);
         loginPage.fillPassword(password);

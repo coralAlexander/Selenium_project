@@ -13,6 +13,14 @@ public class PropertyReader {
         return getProperty("url");
     }
 
+    public static String getUser(){
+        return getProperty("user");
+    }
+
+    public static String getPassword(){
+        return getProperty("password");
+    }
+
     public static String getPathToUploadFile(){
         return getProperty("pathToUploadFile");
     }

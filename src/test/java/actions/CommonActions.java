@@ -60,11 +60,7 @@ public class CommonActions {
     }
 
     public void enter(WebElement element){
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        threadSleep(2000);
         builder.sendKeys(Keys.ENTER).perform();
     }
 
@@ -108,5 +104,13 @@ public class CommonActions {
                 .moveToElement(to)
                 .release(from)
                 .build().perform();
+    }
+
+    public void threadSleep(int sleepTime){
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

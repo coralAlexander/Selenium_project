@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class TeamsPage extends Base {
 
     public TeamsPage() {
@@ -23,6 +25,8 @@ public class TeamsPage extends Base {
     @FindBy(css = "a[class='btn btn-small btn-primary ng-binding']")
     private WebElement saveTeam;@FindBy(css="p[class='muted ng-binding']")
     private WebElement teamsNumber;
+    @FindBy(css = "table[class='task_list table table-hover table-condensed']")
+    private List<WebElement> teamsList;
 
     public void pressAddTeamButton() {
         commonActions.click(addTeamButton);
@@ -50,7 +54,9 @@ public class TeamsPage extends Base {
         commonActions.refreshPage();
     }
 
-    public void verifyNumberOfTeams(int expecteNumber){
-        verification.assertNumberOfTeams(teamsNumber,expecteNumber);
+    public void verifyThatTeamAdded(String expectedDescription){
+       verification.assertThatANewTeamAdded(teamsList.stream().map(e -> e.getText()).anyMatch(el-> el.contains(expectedDescription)));
     }
+
+
 }

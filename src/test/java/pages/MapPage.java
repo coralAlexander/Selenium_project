@@ -17,8 +17,8 @@ public class MapPage extends Base{
     private WebElement signInDropDown;
     @FindBy(css="button[id='btn_add_order']")
     private WebElement addOrderButton;
-    @FindBy(css = "a[id='dispatch_show_list']")
-    private WebElement listViewButton;
+    @FindBy(css = "a[translate='MAIN.PLANNING']")
+    private WebElement planningTab;
 
 
     public void selectSignInDropDown(){
@@ -43,6 +43,6 @@ public class MapPage extends Base{
     }
 
     public void pressListViewButton(){
-        commonActions.click(listViewButton);
+        commonActions.click(planningTab);
     }
 }

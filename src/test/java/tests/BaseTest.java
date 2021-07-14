@@ -7,8 +7,7 @@ import org.testng.annotations.BeforeClass;
 import steps.*;
 import utils.DriverFactory;
 
-import static utils.PropertyReader.getBaseUrl;
-import static utils.PropertyReader.getBrowser;
+import static utils.PropertyReader.*;
 
 public abstract class BaseTest {
 
@@ -20,7 +19,7 @@ public abstract class BaseTest {
     MerchantConfigPageSteps merchantConfigPageSteps;
     DriversPageSteps driversPageSteps;
     TeamsPageSteps teamsPageSteps;
-    ListViewPageSteps listViewPageSteps;
+    PlanningPageSteps planningPageSteps;
 
 
     public static WebDriver getDriver() {
@@ -37,7 +36,8 @@ public abstract class BaseTest {
         merchantConfigPageSteps = new MerchantConfigPageSteps();
         driversPageSteps = new DriversPageSteps();
         teamsPageSteps = new TeamsPageSteps();
-        listViewPageSteps = new ListViewPageSteps();
+        planningPageSteps = new PlanningPageSteps();
+        loginSteps.loginWithUserPasswordAndVerifyUrl(getUser(), getPassword(), "https://app.bringg.com/#/login/");
 
     }
 
