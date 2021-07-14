@@ -3,7 +3,9 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class DriversPage extends Base{
+import java.util.List;
+
+public class DriversPage extends Base {
 
     public DriversPage() {
         super();
@@ -19,9 +21,9 @@ public class DriversPage extends Base{
     private WebElement driverPhoneField;
     @FindBy(css = "button[id='btn_add_driver']")
     private WebElement addDriverButton;
-    @FindBy(css="a[id='dropdownUserValidation']")
+    @FindBy(css = "a[id='dropdownUserValidation']")
     private WebElement validateDriverBy;
-    @FindBy(xpath="//ul[@class='dropdown-menu']/li[2]")
+    @FindBy(xpath = "//ul[@class='dropdown-menu']/li[2]")
     private WebElement emailPasswordValidation;
     @FindBy(css = "input[id='userEmail']")
     private WebElement driverEmailField;
@@ -33,50 +35,64 @@ public class DriversPage extends Base{
     @FindBy(xpath = "//*[text()='OK']")
     private WebElement confirmDriver;
 
-    @FindBy(css="p[class='muted ng-binding']")
+    @FindBy(css = "p[class='muted ng-binding']")
     private WebElement driversNumber;
 
-    public void fillDriverName(String driverName){
-        commonActions.addText(driverNameField,driverName);
+    @FindBy(xpath = "//table//tr[1]/td[2]")
+    private List<WebElement> driverName;
+
+
+    public void getNameFromTable(String driver) {
+        driverName.stream().forEach(element -> {
+            verification.assertThatDriverAdded(element.getText(), driver);
+        });
     }
-    public void fillDriverTitle(String driverTitle){
-        commonActions.addText(driverTitleField,driverTitle);
+
+    public void fillDriverName(String driverName) {
+        commonActions.addText(driverNameField, driverName);
     }
-    public void fillDriverPhone(String driverPhone){
-        commonActions.addText(driverPhoneField,driverPhone);
+
+    public void fillDriverTitle(String driverTitle) {
+        commonActions.addText(driverTitleField, driverTitle);
     }
-    public void pushAddDriverButton(){
+
+    public void fillDriverPhone(String driverPhone) {
+        commonActions.addText(driverPhoneField, driverPhone);
+    }
+
+    public void pushAddDriverButton() {
         commonActions.click(addDriverButton);
     }
 
-    public void selectTeams(){
+    public void selectTeams() {
         commonActions.click(teams);
     }
 
-    public void validateDriverByOption(){
+    public void validateDriverByOption() {
         commonActions.click(validateDriverBy);
     }
 
-    public void selectEmailPasswordValidation(){
+    public void selectEmailPasswordValidation() {
         commonActions.click(emailPasswordValidation);
     }
 
-    public void fillDriverEmailField(String driverEmail){
-        commonActions.addText(driverEmailField,driverEmail);
+    public void fillDriverEmailField(String driverEmail) {
+        commonActions.addText(driverEmailField, driverEmail);
     }
 
-    public void fillDriverPasswordField(String password){
-        commonActions.addText(driverPasswordField,password);
+    public void fillDriverPasswordField(String password) {
+        commonActions.addText(driverPasswordField, password);
     }
-    public void pressAddDriverButton(){
+
+    public void pressAddDriverButton() {
         commonActions.click(saveDriverButton);
     }
 
-    public void confirmDriverCreation(){
+    public void confirmDriverCreation() {
         commonActions.click(confirmDriver);
     }
 
-    public void verifyNumberOfDrivers(int expectedNumber){
-        verification.assertTotalNumberOfDrivers(driversNumber,expectedNumber);
+    public void verifyNumberOfDrivers(int expectedNumber) {
+        verification.assertTotalNumberOfDrivers(driversNumber, expectedNumber);
     }
 }

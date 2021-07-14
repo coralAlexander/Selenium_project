@@ -27,16 +27,14 @@ public class Verification {
         assertThat(element.getAttribute("textContent")).as("").isEqualTo("Total number of drivers: " + expectedNumber);
     }
 
+    public void assertThatDriverAdded(String current , String expected){
+        assertThat(current).isEqualTo(expected);
+    }
+
     public void assertNumberOfOrder(WebElement element, int expectedNumber) {
         wait.until(ExpectedConditions.visibilityOfAllElements(element));
         assertThat(element.getAttribute("textContent")).as("").isEqualTo("Test TeamOrders: " + expectedNumber + " | On Shift: 0 | Online Drivers: 0");
     }
-
-  /*  public void assertNumberOfTeams(WebElement element, int expectedNumber){
-        wait.until(ExpectedConditions.visibilityOfAllElements(element));
-        assertThat(element.getAttribute("textContent")).as("").isEqualTo("Total number of teams: " + expectedNumber);
-
-    }*/
 
     public void assertThatANewTeamAdded(boolean result){
         assertThat(result).isEqualTo(true);
