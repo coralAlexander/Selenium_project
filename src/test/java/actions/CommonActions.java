@@ -4,7 +4,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,7 +34,47 @@ public class CommonActions {
         executor.executeScript("window.scrollBy(" + fromValue + "," + toValue + ")");
     }
 
-    public void pasteTextToElementFromClipBoard(WebElement element, String text) {
+    public void pressEnter(WebElement searchField) {
+        waitForElement(searchField);
+        searchField.sendKeys(Keys.ENTER);
+    }
+
+    public void enter(WebElement element) {
+        threadSleep(2000);
+        builder.sendKeys(Keys.ENTER).perform();
+    }
+
+    public void click(WebElement element) {
+        waitForElement(element);
+        element.click();
+    }
+
+    public void addText(WebElement element, String text) {
+        waitForElement(element);
+        builder.sendKeys(element, text).build().perform();
+    }
+
+    public void refreshPage() {
+        driver.navigate().refresh();
+    }
+
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public void waitForElement(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOfAllElements(element));
+    }
+
+    public void threadSleep(int sleepTime) {
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+     public void pasteTextToElementFromClipBoard(WebElement element, String text) {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
         StringSelection stringSelection = new StringSelection(text);
@@ -54,63 +93,21 @@ public class CommonActions {
         addText(element,text);
     }
 
-    public void pressEnter(WebElement searchField) {
-        waitForElement(searchField);
-        searchField.sendKeys(Keys.ENTER);
-    }
-
-    public void enter(WebElement element){
-        threadSleep(2000);
-        builder.sendKeys(Keys.ENTER).perform();
-    }
-
-    public void click(WebElement element) {
-        waitForElement(element);
-        element.click();
-    }
-
-    public void attachFile(WebElement attachFile, String file) {
-        waitForElement(attachFile);
-        attachFile.sendKeys(PATH_TO_FILE + file);
-    }
-
-    public void addText(WebElement element, String text) {
-        waitForElement(element);
-        builder.sendKeys(element,text).build().perform();
-    }
-
-    public void confirmAlert() {
-        driver.switchTo().alert().accept();
-    }
-
-    public void refreshPage() {
-        driver.navigate().refresh();
-    }
-
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
-
-    public void waitForElement(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOfAllElements(element));
-    }
-
-    public void clickable(WebElement element) {
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(element)).click();
-    }
-
     public void dragAndDrop(WebElement from , WebElement to){
          builder.clickAndHold(from)
                 .moveToElement(to)
                 .release(from)
                 .build().perform();
     }
+     public void attachFile(WebElement attachFile, String file) {
+         waitForElement(attachFile);
+         attachFile.sendKeys(PATH_TO_FILE + file);
+     }
+    public void confirmAlert() {
+        driver.switchTo().alert().accept();
+    }
 
-    public void threadSleep(int sleepTime){
-        try {
-            Thread.sleep(sleepTime);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void clickable(WebElement element) {
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 }
