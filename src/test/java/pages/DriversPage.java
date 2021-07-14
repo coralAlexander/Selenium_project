@@ -38,14 +38,12 @@ public class DriversPage extends Base {
     @FindBy(css = "p[class='muted ng-binding']")
     private WebElement driversNumber;
 
-    @FindBy(xpath = "//table//tr[1]/td[2]")
-    private List<WebElement> driverName;
+    @FindBy(xpath = "//table//td[2]")
+    private List<WebElement> driversNames;
 
 
-    public void getNameFromTable(String driver) {
-        driverName.stream().forEach(element -> {
-            verification.assertThatDriverAdded(element.getText(), driver);
-        });
+    public void verifyAddedDriverNameFromTable(String driver) {
+        verification.assertThatDriverAdded(driversNames.stream().anyMatch(e-> e.getText().equals(driver)));
     }
 
     public void fillDriverName(String driverName) {

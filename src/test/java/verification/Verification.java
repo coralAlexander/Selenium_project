@@ -27,8 +27,8 @@ public class Verification {
         assertThat(element.getAttribute("textContent")).as("").isEqualTo("Total number of drivers: " + expectedNumber);
     }
 
-    public void assertThatDriverAdded(String current , String expected){
-        assertThat(current).isEqualTo(expected);
+    public void assertThatDriverAdded(boolean current){
+        assertThat(current).isEqualTo(true);
     }
 
     public void assertNumberOfOrder(WebElement element, int expectedNumber) {

@@ -23,8 +23,7 @@ public class DriversPageSteps {
         driversPage.fillDriverPasswordField(driverPassword);
         driversPage.pressAddDriverButton();
         driversPage.confirmDriverCreation();
-        driversPage.getNameFromTable(driverName);
-        driversPage.verifyNumberOfDrivers(numOfDrivers);
+        driversPage.verifyAddedDriverNameFromTable(driverName);
         return this;
     }
 }
