@@ -1,15 +1,15 @@
 package tests;
 
+import flows.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
-import flows.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import utils.DriverFactory;
 import utils.HelpMethods;
 import verification.Verification;
 
 import static utils.PropertyReader.*;
-import static utils.PropertyReader.getPassword;
 
 public abstract class BaseTest {
 
