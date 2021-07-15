@@ -1,4 +1,4 @@
-package pages;
+package base;
 
 import actions.CommonActions;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,12 +19,12 @@ import static tests.BaseTest.getDriver;
 
 public abstract class Base {
 
-    WebDriver driver;
-    WebDriverWait wait;
-    CommonActions commonActions;
-    Verification verification;
-    Actions builder;
-    JavascriptExecutor executor;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected CommonActions commonActions;
+    protected Verification verification;
+    protected Actions builder;
+    protected JavascriptExecutor executor;
 
     public Base() {
         this.driver = getDriver();
@@ -33,7 +33,7 @@ public abstract class Base {
         verification = new Verification(wait);
         builder = new Actions(driver);
         executor = (JavascriptExecutor) driver;
-        commonActions = new CommonActions(builder,executor,driver,wait);
+        commonActions = new CommonActions(builder, executor, driver, wait);
 
     }
 }

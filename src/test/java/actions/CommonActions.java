@@ -8,15 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-
-import static utils.PropertyReader.getPathToUploadFile;
-
 public class CommonActions {
-
-    private final static String PATH_TO_FILE = getPathToUploadFile();
 
     Actions builder;
     JavascriptExecutor executor;
@@ -58,10 +50,6 @@ public class CommonActions {
         driver.navigate().refresh();
     }
 
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
-
     public void waitForElement(WebElement element) {
         wait.until(ExpectedConditions.visibilityOfAllElements(element));
     }
@@ -72,42 +60,5 @@ public class CommonActions {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-     public void pasteTextToElementFromClipBoard(WebElement element, String text) {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Clipboard clipboard = toolkit.getSystemClipboard();
-        StringSelection stringSelection = new StringSelection(text);
-        clipboard.setContents(stringSelection, null);
-        clickable(element);
-        element.sendKeys(Keys.CONTROL, "v");
-    }
-
-    public void clickWithJavascript(WebElement element) {
-        waitForElement(element);
-        executor.executeScript("arguments[0].click()", element);
-    }
-
-    public void addTextJavaScrip(WebElement element ,String text){
-        executor.executeScript("arguments[0].setAttribute('style.ng-hide','isConnected:true;');",element);
-        addText(element,text);
-    }
-
-    public void dragAndDrop(WebElement from , WebElement to){
-         builder.clickAndHold(from)
-                .moveToElement(to)
-                .release(from)
-                .build().perform();
-    }
-     public void attachFile(WebElement attachFile, String file) {
-         waitForElement(attachFile);
-         attachFile.sendKeys(PATH_TO_FILE + file);
-     }
-    public void confirmAlert() {
-        driver.switchTo().alert().accept();
-    }
-
-    public void clickable(WebElement element) {
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 }

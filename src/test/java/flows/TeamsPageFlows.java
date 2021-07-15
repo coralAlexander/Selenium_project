@@ -1,19 +1,25 @@
-package steps;
+package flows;
 
+import org.openqa.selenium.WebElement;
 import pages.TeamsPage;
 
-public class TeamsPageSteps {
+import java.util.List;
+
+public class TeamsPageFlows {
 
     private TeamsPage teamsPage = new TeamsPage();
 
-    public TeamsPageSteps addTeam(String name, String description , String address,int numberOfTeams){
+    public TeamsPageFlows addTeam(String name, String description , String address){
         teamsPage.pressAddTeamButton();
         teamsPage.fillTeamNameField(name);
         teamsPage.fillDescriptionField(description);
         teamsPage.fillAddressField(address);
         teamsPage.saveTeam();
         teamsPage.refreshTeamsPage();
-        teamsPage.verifyThatTeamAdded(description);
         return this;
+    }
+
+    public List<WebElement> getTeams(){
+       return teamsPage.getTeamsList();
     }
 }

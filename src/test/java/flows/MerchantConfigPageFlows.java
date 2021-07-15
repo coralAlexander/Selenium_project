@@ -1,12 +1,13 @@
-package steps;
+package flows;
 
+import org.openqa.selenium.WebElement;
 import pages.MerchantConfigPage;
 
-public class MerchantConfigPageSteps {
+public class MerchantConfigPageFlows {
 
     private MerchantConfigPage merchantConfigPage = new MerchantConfigPage();
 
-    public MerchantConfigPageSteps  selectCheckBoxPlanningPhaseBeforeExecution(){
+    public MerchantConfigPageFlows selectCheckBoxPlanningPhaseBeforeExecution(){
         merchantConfigPage.selectCheckBoxPlanningPhaseBeforeExecution();
         merchantConfigPage.pushUpdateButton();
         merchantConfigPage.refreshMerchantConfigPage();
@@ -14,4 +15,7 @@ public class MerchantConfigPageSteps {
         return this;
     }
 
+    public WebElement getCheckBoxPlanningPhaseBeforeExecutionElement(){
+      return  merchantConfigPage.getCheckBoxPlanningPhaseBeforeExecution();
+    }
 }

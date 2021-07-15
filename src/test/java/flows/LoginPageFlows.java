@@ -1,14 +1,13 @@
-package steps;
+package flows;
 
 import pages.MapPage;
 import pages.LoginPage;
 
-public class LoginSteps {
+public class LoginPageFlows {
 
     private LoginPage loginPage = new LoginPage();
 
-    public MapPage loginWithUserPasswordAndVerifyUrl(String userName, String password, String url){
-        loginPage.verifyUrl(url);
+    public MapPage loginWithUserPassword(String userName, String password){
         loginPage.fillUserName(userName);
         loginPage.fillPassword(password);
         loginPage.pressLoginButton();

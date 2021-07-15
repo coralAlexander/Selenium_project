@@ -1,17 +1,13 @@
-package steps;
+package flows;
 
 import pages.DriversPage;
-import pages.PlannigPage;
+import pages.PlanningPage;
 import pages.MapPage;
 import pages.MerchantPage;
 
-public class MapPageSteps {
+public class MapPageFlows {
 
     private MapPage mapPage = new MapPage();
-
-    public void urlVerification(String url){
-     mapPage.verifyUrl(url);
-    }
 
     public MerchantPage selectSettingFromDropDownMenu(){
         mapPage.selectSignInDropDown();
@@ -24,13 +20,13 @@ public class MapPageSteps {
         return new DriversPage();
     }
 
-    public MapPageSteps addOrder(){
-        mapPage.addOrder();
-        return this;
+    public PlanningPage goToPlanningPage(){
+        mapPage.pressListViewButton();
+        return new PlanningPage();
     }
 
-    public PlannigPage goToPlanningPage(){
-        mapPage.pressListViewButton();
-        return new PlannigPage();
+    public MapPageFlows waitForElement(){
+        mapPage.waitForElement();
+        return this;
     }
 }

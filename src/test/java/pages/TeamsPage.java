@@ -1,10 +1,13 @@
 package pages;
 
+import base.Base;
+import lombok.Getter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+@Getter
 public class TeamsPage extends Base {
 
     public TeamsPage() {
@@ -18,12 +21,12 @@ public class TeamsPage extends Base {
     @FindBy(css = "input[id='teamDescription']")
     private WebElement descriptionField;
     @FindBy(css = "div[id='teamAddress']")
-    //@FindBy(css="#teamAddress > div.ui-select-match.ng-scope")
     private WebElement selectAddressField;
     @FindBy(css = "input[id='teamContactPhone']")
     private WebElement contactPhoneField;
     @FindBy(css = "a[class='btn btn-small btn-primary ng-binding']")
-    private WebElement saveTeam;@FindBy(css="p[class='muted ng-binding']")
+    private WebElement saveTeam;
+    @FindBy(css = "p[class='muted ng-binding']")
     private WebElement teamsNumber;
     @FindBy(css = "table[class='task_list table table-hover table-condensed']")
     private List<WebElement> teamsList;
@@ -40,7 +43,6 @@ public class TeamsPage extends Base {
         commonActions.addText(descriptionField, description);
     }
 
-
     public void fillAddressField(String address) {
         commonActions.addText(selectAddressField, address);
         commonActions.enter(selectAddressField);
@@ -53,10 +55,4 @@ public class TeamsPage extends Base {
     public void refreshTeamsPage() {
         commonActions.refreshPage();
     }
-
-    public void verifyThatTeamAdded(String expectedDescription){
-       verification.assertThatANewTeamAdded(teamsList.stream().map(e -> e.getText()).anyMatch(el-> el.contains(expectedDescription)));
-    }
-
-
 }

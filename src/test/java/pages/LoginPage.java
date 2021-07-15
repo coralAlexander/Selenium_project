@@ -1,10 +1,11 @@
 package pages;
 
+import base.Base;
+import lombok.Getter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
+@Getter
 public class LoginPage extends Base {
 
     public LoginPage() {
@@ -19,23 +20,16 @@ public class LoginPage extends Base {
     private WebElement loginButton;
 
 
-    public void fillUserName(String user){
-        commonActions.addText(userNameField,user);
+    public void fillUserName(String user) {
+        commonActions.addText(userNameField, user);
     }
 
-    public void fillPassword(String password){
-        commonActions.addText(passwordField,password);
+    public void fillPassword(String password) {
+        commonActions.addText(passwordField, password);
     }
 
-    public void verifyUrl(String url){
-        commonActions.waitForElement(userNameField);
-        verification.assertRedirectToPage(commonActions.getCurrentUrl(),url);
-    }
-
-    public void pressLoginButton(){
+    public void pressLoginButton() {
         commonActions.click(loginButton);
     }
-
-
 
 }

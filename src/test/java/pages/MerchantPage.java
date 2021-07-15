@@ -1,9 +1,10 @@
 package pages;
 
+import base.Base;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MerchantPage extends Base{
+public class MerchantPage extends Base {
 
     public MerchantPage() {
         super();

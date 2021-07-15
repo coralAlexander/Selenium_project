@@ -1,11 +1,14 @@
 package pages;
 
+import base.Base;
+import lombok.Getter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PlannigPage extends Base{
+@Getter
+public class PlanningPage extends Base {
 
-    public PlannigPage() {
+    public PlanningPage() {
         super();
     }
 
@@ -31,11 +34,6 @@ public class PlannigPage extends Base{
     private WebElement phoneField;
     @FindBy(css = "div[class='group-title']")
     private WebElement numberOfOrders;
-
-
-
-
-
     @FindBy(css = "button[id='customize_columns_btn']")
     private WebElement customizeButton;
     @FindBy(css = "button[id='apply_columns_selection']")
@@ -45,14 +43,8 @@ public class PlannigPage extends Base{
       commonActions.click(addOrderButtonOnListViewPage);
     }
 
-
-   public void fillPhoneField(){
-        commonActions.addText(phoneField,"054678900");
-       commonActions.enter(phoneField);
-   }
-
-   public void fillExternalId(){
-        commonActions.addText(externalId,"33333");
+   public void fillExternalId(String id){
+        commonActions.addText(externalId,id);
         commonActions.enter(externalId);
    }
 
@@ -87,9 +79,5 @@ public class PlannigPage extends Base{
 
     public void refreshPlanningPage(){
         commonActions.refreshPage();
-    }
-
-    public void verifyNumberOfOrders(int numOfOrders){
-        verification.assertNumberOfOrder(numberOfOrders,numOfOrders);
     }
 }

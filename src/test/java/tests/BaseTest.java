@@ -1,25 +1,32 @@
 package tests;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import steps.*;
+import flows.*;
 import utils.DriverFactory;
+import utils.HelpMethods;
+import verification.Verification;
 
-import static utils.PropertyReader.*;
+import static utils.PropertyReader.getBrowser;
+import static utils.PropertyReader.getLoginUrl;
 
 public abstract class BaseTest {
 
     private static WebDriver driver;
+    protected Verification verification;
+    private WebDriverWait wait;
+    protected HelpMethods helpMethods;
 
-    LoginSteps loginSteps;
-    MapPageSteps mapPageSteps;
-    MerchantPageSteps merchantPageSteps;
-    MerchantConfigPageSteps merchantConfigPageSteps;
-    DriversPageSteps driversPageSteps;
-    TeamsPageSteps teamsPageSteps;
-    PlanningPageSteps planningPageSteps;
+
+    LoginPageFlows loginPageFlows;
+    MapPageFlows mapPageFlows;
+    MerchantPageFlows merchantPageFlows;
+    MerchantConfigPageFlows merchantConfigPageFlows;
+    DriversPageFlows driversPageFlows;
+    TeamsPageFlows teamsPageFlows;
+    PlanningPageFlows planningPageFlows;
 
 
     public static WebDriver getDriver() {
@@ -29,34 +36,21 @@ public abstract class BaseTest {
     @BeforeClass
     public void setUp() {
         driver = DriverFactory.getDriver(getBrowser());
-        driver.get(getBaseUrl());
-        loginSteps = new LoginSteps();
-        mapPageSteps = new MapPageSteps();
-        merchantPageSteps = new MerchantPageSteps();
-        merchantConfigPageSteps = new MerchantConfigPageSteps();
-        driversPageSteps = new DriversPageSteps();
-        teamsPageSteps = new TeamsPageSteps();
-        planningPageSteps = new PlanningPageSteps();
-        loginSteps.loginWithUserPasswordAndVerifyUrl(getUser(), getPassword(), "https://app.bringg.com/#/login/");
-
+        driver.get(getLoginUrl());
+        loginPageFlows = new LoginPageFlows();
+        mapPageFlows = new MapPageFlows();
+        merchantPageFlows = new MerchantPageFlows();
+        merchantConfigPageFlows = new MerchantConfigPageFlows();
+        driversPageFlows = new DriversPageFlows();
+        teamsPageFlows = new TeamsPageFlows();
+        planningPageFlows = new PlanningPageFlows();
+        wait = new WebDriverWait(driver,5);
+        verification = new Verification(wait);
+        helpMethods = new HelpMethods(driver);
     }
 
     @AfterClass
     public void tearDown() {
-
-        driver.quit();
+         driver.quit();
     }
-
-    @AfterMethod
-    public void goBack() {
-
-        //driver.navigate().back();
-    }
-
-   /* @DataProvider(name = "dataProvider")
-    public Object[][] dataProviderMethod() {
-        return new Object[][]{{"Blouse"}};
-    }*/
-
-
 }

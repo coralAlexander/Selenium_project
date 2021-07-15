@@ -1,14 +1,13 @@
-package steps;
+package flows;
 
-import pages.MapPage;
 import pages.MerchantConfigPage;
 import pages.MerchantPage;
 
-public class MerchantPageSteps {
+public class MerchantPageFlows {
 
    private MerchantPage merchantPage = new MerchantPage();
 
-   public MerchantPageSteps  cleanAccountFromDrivers(){
+   public MerchantPageFlows cleanAccountFromDrivers(){
       merchantPage.pushOnCleanAccountFromDriversCustomersAndTasks();
       merchantPage.confirmAlert();
       return this;

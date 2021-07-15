@@ -1,9 +1,12 @@
-package steps;
+package flows;
 
+import org.openqa.selenium.WebElement;
 import pages.DriversPage;
 import pages.TeamsPage;
 
-public class DriversPageSteps {
+import java.util.List;
+
+public class DriversPageFlows {
 
     private DriversPage driversPage = new DriversPage();
 
@@ -12,7 +15,7 @@ public class DriversPageSteps {
         return new TeamsPage();
     }
 
-    public DriversPageSteps addDriver(String driverName,String title,String driverPhone,String driverEmail,String driverPassword,int numOfDrivers){
+    public DriversPageFlows addDriver(String driverName, String title, String driverPhone, String driverEmail, String driverPassword, int numOfDrivers){
         driversPage.pushAddDriverButton();
         driversPage.fillDriverName(driverName);
         driversPage.fillDriverTitle(title);
@@ -23,7 +26,11 @@ public class DriversPageSteps {
         driversPage.fillDriverPasswordField(driverPassword);
         driversPage.pressAddDriverButton();
         driversPage.confirmDriverCreation();
-        driversPage.verifyAddedDriverNameFromTable(driverName);
         return this;
     }
+
+    public List<WebElement> getDriversNames(){
+       return driversPage.getDriversNames();
+    }
+
 }

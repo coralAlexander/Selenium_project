@@ -9,8 +9,8 @@ public class PropertyReader {
 
     private static final String PATH_TO_PROPERTY = "src/test/resources/framework.properties";
 
-    public static String getBaseUrl() {
-        return getProperty("url");
+    public static String getLoginUrl() {
+        return getProperty("loginUrl");
     }
 
     public static String getUser(){
@@ -21,8 +21,8 @@ public class PropertyReader {
         return getProperty("password");
     }
 
-    public static String getPathToUploadFile(){
-        return getProperty("pathToUploadFile");
+    public static String getLandingPageUrl(){
+        return getProperty("landingPageUrl");
     }
 
     public static Browser getBrowser() {

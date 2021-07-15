@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Verification {
@@ -23,12 +25,9 @@ public class Verification {
         assertThat(element.getAttribute("checked")).as("Check box unchecked !!!").isEqualTo("true");
     }
 
-    public void assertTotalNumberOfDrivers(WebElement element, int expectedNumber) {
-        assertThat(element.getAttribute("textContent")).as("").isEqualTo("Total number of drivers: " + expectedNumber);
-    }
+    public void assertThatDriverAdded(List<WebElement> driversNames, String expectedName) {
 
-    public void assertThatDriverAdded(boolean current){
-        assertThat(current).isEqualTo(true);
+        assertThat(driversNames.stream().anyMatch(e -> e.getText().equals(expectedName))).isEqualTo(true);
     }
 
     public void assertNumberOfOrder(WebElement element, int expectedNumber) {
@@ -36,7 +35,8 @@ public class Verification {
         assertThat(element.getAttribute("textContent")).as("").isEqualTo("Test TeamOrders: " + expectedNumber + " | On Shift: 0 | Online Drivers: 0");
     }
 
-    public void assertThatANewTeamAdded(boolean result){
-        assertThat(result).isEqualTo(true);
+    public void assertThatANewTeamAdded(List<WebElement> teamsList, String expectedDescription) {
+        wait.until(ExpectedConditions.visibilityOfAllElements(teamsList));
+        assertThat(teamsList.stream().map(e -> e.getText()).anyMatch(el -> el.contains(expectedDescription))).isEqualTo(true);
     }
 }

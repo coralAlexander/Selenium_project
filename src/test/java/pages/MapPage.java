@@ -1,9 +1,10 @@
 package pages;
 
+import base.Base;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MapPage extends Base{
+public class MapPage extends Base {
 
     public MapPage() {
         super();
@@ -33,9 +34,8 @@ public class MapPage extends Base{
         commonActions.click(drivers);
     }
 
-    public void verifyUrl(String url) {
+    public void waitForElement() {
         commonActions.waitForElement(drivers);
-        verification.assertRedirectToPage(commonActions.getCurrentUrl(),url);
     }
 
     public void addOrder(){

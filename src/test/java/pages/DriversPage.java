@@ -1,10 +1,13 @@
 package pages;
 
+import base.Base;
+import lombok.Getter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+@Getter
 public class DriversPage extends Base {
 
     public DriversPage() {
@@ -40,11 +43,6 @@ public class DriversPage extends Base {
 
     @FindBy(xpath = "//table//td[2]")
     private List<WebElement> driversNames;
-
-
-    public void verifyAddedDriverNameFromTable(String driver) {
-        verification.assertThatDriverAdded(driversNames.stream().anyMatch(e-> e.getText().equals(driver)));
-    }
 
     public void fillDriverName(String driverName) {
         commonActions.addText(driverNameField, driverName);
@@ -88,9 +86,5 @@ public class DriversPage extends Base {
 
     public void confirmDriverCreation() {
         commonActions.click(confirmDriver);
-    }
-
-    public void verifyNumberOfDrivers(int expectedNumber) {
-        verification.assertTotalNumberOfDrivers(driversNumber, expectedNumber);
     }
 }
