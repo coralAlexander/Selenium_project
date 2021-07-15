@@ -13,7 +13,7 @@ public class CommonActions {
     Actions builder;
     JavascriptExecutor executor;
     WebDriver driver;
-    WebDriverWait wait;
+    WebDriverWait wait;/**/
 
     public CommonActions(Actions builder, JavascriptExecutor executor, WebDriver driver, WebDriverWait wait) {
         this.builder = builder;
