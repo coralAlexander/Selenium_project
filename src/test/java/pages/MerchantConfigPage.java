@@ -18,23 +18,21 @@ public class MerchantConfigPage extends Base {
     @FindBy(css = "input[ng-click ='updateMerchantSpecificConfiguration()']")
     private WebElement updateButton;
 
-
-
-    public void selectCheckBoxPlanningPhaseBeforeExecution(){
-        if(!checkBoxPlanningPhaseBeforeExecution.isSelected()){
+    public void selectCheckBoxPlanningPhaseBeforeExecution() {
+        if (!checkBoxPlanningPhaseBeforeExecution.isSelected()) {
             commonActions.click(checkBoxPlanningPhaseBeforeExecution);
         }
     }
 
-    public void pushUpdateButton(){
+    public void pushUpdateButton() {
         commonActions.click(updateButton);
     }
 
-    public void refreshMerchantConfigPage(){
+    public void refreshMerchantConfigPage() {
         commonActions.refreshPage();
     }
 
-    public void verifyIfPlanningPhaseBeforeExecutionChecked(){
+    public void verifyIfPlanningPhaseBeforeExecutionChecked() {
         verification.assertCheckBoxChecked(checkBoxPlanningPhaseBeforeExecution);
     }
 }

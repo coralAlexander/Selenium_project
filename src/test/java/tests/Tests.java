@@ -1,9 +1,10 @@
 package tests;
 
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static utils.PropertyReader.*;
+import static utils.PropertyReader.getLandingPageUrl;
+import static utils.PropertyReader.getLoginUrl;
 
 public class Tests extends BaseTest {
 
@@ -16,28 +17,27 @@ public class Tests extends BaseTest {
     private final static String TO_WHOM = "test" ;
     private final static String EXTERNAL_ID = "33333";
 
-    @BeforeMethod()
-    void prepare() {
+
+    @Test(priority = 1)
+    public void loginPageVerification(){
         verification.assertRedirectToPage(helpMethods.getCurrentUrl(), getLoginUrl());
-        loginPageFlows.loginWithUserPassword(getUser(), getPassword());
     }
 
-    @Test
+    @Test(priority = 2)
     public void successfullyLoginRedirectToMapPage() {
         mapPageFlows.waitForElement();
         verification.assertRedirectToPage(helpMethods.getCurrentUrl(), getLandingPageUrl());
     }
 
-    @Test
+    @Test(priority = 3)
     public void cleanupAccountAndEnablePlanning() {
         mapPageFlows.selectSettingFromDropDownMenu();
         merchantPageFlows.cleanAccountFromDrivers().selectMerchantConfiguration();
         merchantConfigPageFlows.selectCheckBoxPlanningPhaseBeforeExecution();
         verification.assertCheckBoxChecked(merchantConfigPageFlows.getCheckBoxPlanningPhaseBeforeExecutionElement());
-
     }
 
-    @Test
+    @Test(priority = 4)
     public void createANewTeam() {
         String description = helpMethods.generateString();
         mapPageFlows.goToDriverPage();
@@ -46,7 +46,7 @@ public class Tests extends BaseTest {
         verification.assertThatANewTeamAdded(teamsPageFlows.getTeams(), description);
     }
 
-    @Test
+    @Test(priority = 5)
     public void addDrivers() {
         String driverName1 = helpMethods.generateString();
         String driverName2 = helpMethods.generateString();
@@ -57,7 +57,7 @@ public class Tests extends BaseTest {
         verification.assertThatDriverAdded(driversPageFlows.getDriversNames(), driverName2);
     }
 
-    @Test
+    @Test(priority = 6)
     public void createOrder() {
         mapPageFlows.goToPlanningPage();
         planningPageFlows.addOrder(TEAM_NAME, ADDRESS, TEST_TITLE, helpMethods.generateString() + DRIVER_EMAIL, TO_WHOM,EXTERNAL_ID);

@@ -2,15 +2,14 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.*;
 import flows.*;
 import utils.DriverFactory;
 import utils.HelpMethods;
 import verification.Verification;
 
-import static utils.PropertyReader.getBrowser;
-import static utils.PropertyReader.getLoginUrl;
+import static utils.PropertyReader.*;
+import static utils.PropertyReader.getPassword;
 
 public abstract class BaseTest {
 
@@ -33,7 +32,7 @@ public abstract class BaseTest {
         return driver;
     }
 
-    @BeforeClass
+    @BeforeClass()
     public void setUp() {
         driver = DriverFactory.getDriver(getBrowser());
         driver.get(getLoginUrl());
@@ -47,10 +46,11 @@ public abstract class BaseTest {
         wait = new WebDriverWait(driver,5);
         verification = new Verification(wait);
         helpMethods = new HelpMethods(driver);
+        loginPageFlows.loginWithUserPassword(getUser(), getPassword());
     }
 
     @AfterClass
     public void tearDown() {
-         driver.quit();
+        driver.quit();
     }
 }

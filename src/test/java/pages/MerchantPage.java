@@ -16,8 +16,6 @@ public class MerchantPage extends Base {
     @FindBy(xpath = "//*[text()='Merchant Configuration']")
     private WebElement merchantConf;
 
-
-
     public void pushOnCleanAccountFromDriversCustomersAndTasks(){
         commonActions.click(cleanAccountFromDriversCustomersAndTasks);
     }
@@ -25,7 +23,6 @@ public class MerchantPage extends Base {
     public void confirmAlert(){
         driver.switchTo().alert().accept();
     }
-
     public void selectMerchantConfiguration(){
         commonActions.click(merchantConf);
     }
