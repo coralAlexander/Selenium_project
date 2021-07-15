@@ -16,11 +16,11 @@ public class Verification {
         this.wait = wait;
     }
 
-    public void assertRedirectToPage(String currentUrl, String expectedUrl) {
+    public void assertCurrentPageUrl(String currentUrl, String expectedUrl) {
         assertThat(currentUrl).as("Redirect to incorrect page").isEqualTo(expectedUrl);
     }
 
-    public void assertCheckBoxChecked(WebElement element) {
+    public void assertThatCheckBoxChecked(WebElement element) {
         wait.until(ExpectedConditions.visibilityOfAllElements(element));
         assertThat(element.getAttribute("checked")).as("Check box unchecked !!!").isEqualTo("true");
     }

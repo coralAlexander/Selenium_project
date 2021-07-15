@@ -19,13 +19,13 @@ public class Tests extends BaseTest {
 
     @Test(priority = 1)
     public void loginPageVerification(){
-        verification.assertRedirectToPage(helpMethods.getCurrentUrl(), getLoginUrl());
+        verification.assertCurrentPageUrl(helpMethods.getCurrentUrl(), getLoginUrl());
     }
 
     @Test(priority = 2)
     public void successfullyLoginRedirectToMapPage() {
         mapPageFlows.waitForElement();
-        verification.assertRedirectToPage(helpMethods.getCurrentUrl(), getLandingPageUrl());
+        verification.assertCurrentPageUrl(helpMethods.getCurrentUrl(), getLandingPageUrl());
     }
 
     @Test(priority = 3)
@@ -33,7 +33,7 @@ public class Tests extends BaseTest {
         mapPageFlows.selectSettingFromDropDownMenu();
         merchantPageFlows.cleanAccountFromDrivers().selectMerchantConfiguration();
         merchantConfigPageFlows.selectCheckBoxPlanningPhaseBeforeExecution();
-        verification.assertCheckBoxChecked(merchantConfigPageFlows.getCheckBoxPlanningPhaseBeforeExecutionElement());
+        verification.assertThatCheckBoxChecked(merchantConfigPageFlows.getCheckBoxPlanningPhaseBeforeExecutionElement());
     }
 
     @Test(priority = 4)

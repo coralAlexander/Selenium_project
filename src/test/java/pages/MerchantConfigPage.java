@@ -33,6 +33,6 @@ public class MerchantConfigPage extends Base {
     }
 
     public void verifyIfPlanningPhaseBeforeExecutionChecked() {
-        verification.assertCheckBoxChecked(checkBoxPlanningPhaseBeforeExecution);
+        verification.assertThatCheckBoxChecked(checkBoxPlanningPhaseBeforeExecution);
     }
 }
