@@ -41,8 +41,8 @@ public class Tests extends BaseTest {
         String description = helpMethods.generateString();
         mapPageFlows.goToDriverPage();
         driversPageFlows.goToTeams();
-        teamsPageFlows.addTeam(TEAM_NAME, description, ADDRESS);
-        verification.assertThatANewTeamAdded(teamsPageFlows.getTeams(), description);
+        teamsPageFlows.addTeam(TEAM_NAME+helpMethods.generateString(), description, ADDRESS);
+        verification.assertThatElementContainsText(teamsPageFlows.getTeams(), description);
     }
 
     @Test(priority = 5)
@@ -51,15 +51,15 @@ public class Tests extends BaseTest {
         String driverName2 = helpMethods.generateString();
         mapPageFlows.goToDriverPage();
         driversPageFlows.addDriver(driverName1, TEST_TITLE, TEST_PHONE_NUM, helpMethods.generateString() + DRIVER_EMAIL, DRIVER_PASSWORD, 1);
-        verification.assertThatDriverAdded(driversPageFlows.getDriversNames(), driverName1);
+        verification.assertThatElementAdded(driversPageFlows.getDriversNames(), driverName1);
         driversPageFlows.addDriver(driverName2, TEST_TITLE, TEST_PHONE_NUM, helpMethods.generateString() + DRIVER_EMAIL, DRIVER_PASSWORD, 2);
-        verification.assertThatDriverAdded(driversPageFlows.getDriversNames(), driverName2);
+        verification.assertThatElementAdded(driversPageFlows.getDriversNames(), driverName2);
     }
 
     @Test(priority = 6)
     public void createOrder() {
         mapPageFlows.goToPlanningPage();
         planningPageFlows.addOrder(TEAM_NAME, ADDRESS, TEST_TITLE, helpMethods.generateString() + DRIVER_EMAIL, TO_WHOM,EXTERNAL_ID);
-        verification.assertNumberOfOrder(planningPageFlows.getNumberOfOrdersElement(), 1);
+        verification.assertElementText(planningPageFlows.getNumberOfOrdersElement(), 1,TEAM_NAME);
     }
 }

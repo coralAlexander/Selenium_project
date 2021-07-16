@@ -38,10 +38,6 @@ public class MapPage extends Base {
         commonActions.waitForElement(drivers);
     }
 
-    public void addOrder(){
-        commonActions.click(addOrderButton);
-    }
-
     public void pressListViewButton(){
         commonActions.click(planningTab);
     }

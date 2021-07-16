@@ -13,7 +13,7 @@ public class CommonActions {
     Actions builder;
     JavascriptExecutor executor;
     WebDriver driver;
-    WebDriverWait wait;/**/
+    WebDriverWait wait;
 
     public CommonActions(Actions builder, JavascriptExecutor executor, WebDriver driver, WebDriverWait wait) {
         this.builder = builder;
@@ -21,11 +21,7 @@ public class CommonActions {
         this.driver = driver;
         this.wait = wait;
     }
-
-    public void scrollDown(int fromValue, int toValue) {
-        executor.executeScript("window.scrollBy(" + fromValue + "," + toValue + ")");
-    }
-
+    
     public void pressEnter(WebElement searchField) {
         waitForElement(searchField);
         searchField.sendKeys(Keys.ENTER);
