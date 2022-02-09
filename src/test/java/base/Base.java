@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import verification.Verification;
@@ -24,7 +25,6 @@ public abstract class Base {
     protected CommonActions commonActions;
     protected Verification verification;
     protected Actions builder;
-    protected JavascriptExecutor executor;
 
     public Base() {
         this.driver = getDriver();
@@ -32,8 +32,6 @@ public abstract class Base {
         wait = new WebDriverWait(driver, 5);
         verification = new Verification(wait);
         builder = new Actions(driver);
-        executor = (JavascriptExecutor) driver;
-        commonActions = new CommonActions(builder, executor, driver, wait);
-
+        commonActions = new CommonActions(builder, driver, wait);
     }
 }

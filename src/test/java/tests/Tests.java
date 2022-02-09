@@ -2,64 +2,32 @@ package tests;
 
 import org.testng.annotations.Test;
 
-import static utils.PropertyReader.getLandingPageUrl;
-import static utils.PropertyReader.getLoginUrl;
+import static utils.PropertyReader.getPassword;
+import static utils.PropertyReader.getUser;
 
 public class Tests extends BaseTest {
 
-    private final static String TEAM_NAME = "Test Team";
-    private final static String ADDRESS = "Tel Aviv";
-    private final static String TEST_TITLE = "Test title";
-    private final static String TEST_PHONE_NUM = "0546789099";
-    private final static String DRIVER_EMAIL = "@driver.com";
-    private final static String DRIVER_PASSWORD = "123456";
-    private final static String TO_WHOM = "test" ;
-    private final static String EXTERNAL_ID = "33333";
+    private final static String expectedLandingPage = "https://nbvxuserportalstag.z6.web.core.windows.net/home";
 
 
     @Test(priority = 1)
-    public void loginPageVerification(){
-        verification.assertCurrentPageUrl(helpMethods.getCurrentUrl(), getLoginUrl());
+    public void loginVerificationHappyFlow(){
+        loginPageFlows.loginWithUserPassword(getUser(), getPassword());
+        verification.assertCurrentPageUrl(helpMethods.getCurrentUrl(), expectedLandingPage);
     }
 
     @Test(priority = 2)
-    public void successfullyLoginRedirectToMapPage() {
-        mapPageFlows.waitForElement();
-        verification.assertCurrentPageUrl(helpMethods.getCurrentUrl(), getLandingPageUrl());
+    public void loginUnHappyFlowInvalidUserPassword(){
+       loginPageFlows.loginFailed("user", "password2222222");
     }
 
     @Test(priority = 3)
-    public void cleanupAccountAndEnablePlanning() {
-        mapPageFlows.selectSettingFromDropDownMenu();
-        merchantPageFlows.cleanAccountFromDrivers().selectMerchantConfiguration();
-        merchantConfigPageFlows.selectCheckBoxPlanningPhaseBeforeExecution();
-        verification.assertThatCheckBoxChecked(merchantConfigPageFlows.getCheckBoxPlanningPhaseBeforeExecutionElement());
+    public void userNameFieldWrongNumberOfCharacters(){
+         verification.assertWrongQuantityOfCharactersInUserNameField(loginPageFlows.missedCharacters("err"), "Invalid or missing user name.");
     }
 
     @Test(priority = 4)
-    public void createANewTeam() {
-        String description = helpMethods.generateString();
-        mapPageFlows.goToDriverPage();
-        driversPageFlows.goToTeams();
-        teamsPageFlows.addTeam(TEAM_NAME+helpMethods.generateString(), description, ADDRESS);
-        verification.assertThatElementContainsText(teamsPageFlows.getTeams(), description);
-    }
-
-    @Test(priority = 5)
-    public void addDrivers() {
-        String driverName1 = helpMethods.generateString();
-        String driverName2 = helpMethods.generateString();
-        mapPageFlows.goToDriverPage();
-        driversPageFlows.addDriver(driverName1, TEST_TITLE, TEST_PHONE_NUM, helpMethods.generateString() + DRIVER_EMAIL, DRIVER_PASSWORD, 1);
-        verification.assertThatElementAdded(driversPageFlows.getDriversNames(), driverName1);
-        driversPageFlows.addDriver(driverName2, TEST_TITLE, TEST_PHONE_NUM, helpMethods.generateString() + DRIVER_EMAIL, DRIVER_PASSWORD, 2);
-        verification.assertThatElementAdded(driversPageFlows.getDriversNames(), driverName2);
-    }
-
-    @Test(priority = 6)
-    public void createOrder() {
-        mapPageFlows.goToPlanningPage();
-        planningPageFlows.addOrder(TEAM_NAME, ADDRESS, TEST_TITLE, helpMethods.generateString() + DRIVER_EMAIL, TO_WHOM,EXTERNAL_ID);
-        verification.assertElementText(planningPageFlows.getNumberOfOrdersElement(), 1,TEAM_NAME);
+    public void passwordFieldWrongNumberOfCharacters(){
+        verification.assertWrongQuantityOfCharactersInPasswordField(loginPageFlows.missedPasswordCharacters( "sds1"), "Missing password.");
     }
 }

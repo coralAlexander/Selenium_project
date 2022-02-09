@@ -29,6 +29,10 @@ public class PropertyReader {
         return Browser.valueOf(getProperty("browser"));
     }
 
+    public static String getPathToScreenshotFolder(){
+        return getProperty("pathToScreenshotFolder");
+    }
+
     private static String getProperty(String propertyName) {
         if (System.getProperty(propertyName) == null) {
             return getPropertyFromFile(propertyName);

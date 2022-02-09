@@ -12,16 +12,29 @@ public class LoginPage extends Base {
         super();
     }
 
-    @FindBy(css = "input[id='inputEmail']")
+    @FindBy(css = "input[id='mat-input-0']")
     private WebElement userNameField;
-    @FindBy(css = "input[id='inputPassword']")
+    @FindBy(css = "input[id='mat-input-1']")
     private WebElement passwordField;
-    @FindBy(css = "input[type='button']")
+    @FindBy(xpath = "//*[text()='Invalid or missing user name.']")
+    private WebElement wrongUserName;
+    @FindBy(xpath = "//*[text()='Missing password.']" )
+    private WebElement missingPasswordErrorMessage;
+    @FindBy(xpath = "//*[contains(text(), 'Disabled user - please contact support')]")
+    private WebElement text;
+    @FindBy(css = "button[type='submit']")
     private WebElement loginButton;
-
 
     public void fillUserName(String user) {
         commonActions.addText(userNameField, user);
+    }
+
+    public void clickOnPasswordField(){
+        commonActions.click(passwordField);
+    }
+
+    public void clickOnUserNameField(){
+        commonActions.click(userNameField);
     }
 
     public void fillPassword(String password) {
@@ -32,4 +45,7 @@ public class LoginPage extends Base {
         commonActions.click(loginButton);
     }
 
+    public void doScreenshot(){
+        commonActions.doScreenShot();
+    }
 }
